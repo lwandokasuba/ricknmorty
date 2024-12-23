@@ -24,7 +24,7 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Home() {
   const [page, setPage] = useState<number>(1)
-  const { characters, loading } = useCharacters(page);
+  const { characters, loading, error } = useCharacters(page);
   const navigate = useNavigate()
   return (
     <Container>
@@ -53,6 +53,7 @@ export default function Home() {
             Next
           </Button>
         </Stack>
+        {error && <Typography>{error}</Typography>}
         <Grid2 container spacing={2}>
           {!loading ? characters?.map((c) => (
             <Grid2 size={4} key={c.id}>
