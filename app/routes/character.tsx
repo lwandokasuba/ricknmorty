@@ -3,6 +3,7 @@ import {
   CardActionArea,
   CardContent,
   CardMedia,
+  CircularProgress,
   Container,
   Grid2,
   Stack,
@@ -45,6 +46,7 @@ export default function Character({
       >
         <Typography variant="h1">Character</Typography>
         <Typography variant="h6">By Lwando Kasuba</Typography>
+        {loading && <CircularProgress />}
         {character && (
           <Card sx={{ width: "100%" }} key={character.id}>
             <CardActionArea>
@@ -59,6 +61,13 @@ export default function Character({
                 </Typography>
                 <Typography variant="body2" sx={{ color: "text.secondary" }}>
                   {character.status}
+                  {' '}
+                  {character.created}
+                  {' '}
+                  {character.species}
+                  {' '}
+                  {/* {character.location} */}
+                  {...character.episode.map((c) => `${c}, `)}
                 </Typography>
               </CardContent>
             </CardActionArea>
