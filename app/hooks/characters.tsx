@@ -34,7 +34,7 @@ export function useCharacter(id: string) {
     fetch(`https://rickandmortyapi.com/api/character/${id}`)
     .then(async (res) => {
       const json = await res?.json()
-      setCharacters(json?.results as unknown as Character)
+      setCharacters(json as unknown as Character)
     })
     .catch((error) => {
       setError(error.message)

@@ -18,12 +18,20 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-export default function Character({ params }: Route.ComponentProps) {
-  if (params?.characterId) {
-    return <div />;
-  }
-  const { character } = params?.characterId
-    ? useCharacter(params?.characterId)
+
+export async function clientLoader({
+  params,
+}: Route.ClientLoaderArgs) {
+  return params?.characterId
+}
+
+
+export default function Character({
+  loaderData,
+}: Route.ComponentProps) {
+  console.log(loaderData)
+  const { character, loading } = loaderData
+    ? useCharacter(loaderData)
     : {};
   return (
     <Container>
